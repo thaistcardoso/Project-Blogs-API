@@ -2,21 +2,35 @@ const { User } = require('../database/models');
 const { generateJWToken } = require('../utils/jwt');
 // const { generateJWToken } = require('../utils/jwt');
 
-    const createUser = async ({ id, displayName, email, password, image }) => {
-        const mail = await User.findOne({
-            attributes: ['id', 'displayName', 'email', 'password', 'image'],
-            where: { email },
-        });
-        
-        if (mail) {
-            const error = new Error('User already registered');
-            error.status = 409;
-            throw error;
-        }
-        const newUser = await User.create({ id, displayName, email, password, image });
-        const token = generateJWToken(newUser.dataValues);
+const createUser = async ({ id, displayName, email, password, image }) => {
+    const mail = await User.findOne({
+        attributes: ['id', 'displayName', 'email', 'password', 'image'],
+        where: { email },
+    });
 
-        return { token };
-    };
+    if (mail) {
+        const error = new Error('User already registered');
+        error.status = 409;
+        throw error;
+    }
+    const newUser = await User.create({ id, displayName, email, password, image });
+    const token = generateJWToken(newUser.dataValues);
 
-module.exports = { createUser };
+    return { token };
+};
+
+const getUser = async () => {
+    const findUser = await User.findAll({
+        attributes: ['id', 'displayName', 'email', 'image'],
+    });
+
+    return findUser;
+};
+
+// const getUserId = (id) => User.findAll();
+
+module.exports = {
+    createUser,
+    getUser,
+    // getUserId,
+};

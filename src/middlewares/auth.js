@@ -9,8 +9,8 @@ const authenticateMiddleware = async (req, res, next) => {
         error.status = 401;
         throw error;
     }
-    res.local.user = user;
+    res.locals.user = user;
     next();
 };
 
-module.exports = authenticateMiddleware;
+module.exports = { authenticateMiddleware };

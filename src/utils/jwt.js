@@ -12,7 +12,7 @@ const generateJWToken = ({ id, displayName, email, image }) =>
 
 const authenticateToken = async (token) => {
     if (!token) {
-        const e = new Error('jwt malformed');
+        const e = new Error('Token not found');
         e.status = 401;
         throw e;
     }
@@ -22,7 +22,7 @@ const authenticateToken = async (token) => {
         return validate;
     } catch (error) {
         console.log('errocatch', error);
-        const erro = new Error('jwt malformed');
+        const erro = new Error('Expired or invalid token');
         erro.status = 401;
         throw erro;
     }
