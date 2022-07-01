@@ -27,10 +27,17 @@ const getUser = async () => {
     return findUser;
 };
 
-// const getUserId = (id) => User.findAll();
+const getUserId = async (id) => {
+    const findUserId = await User.findOne({
+        attributes: ['id', 'displayName', 'email', 'image'],
+        where: { id },
+    });
+    
+    return findUserId;
+};
 
 module.exports = {
     createUser,
     getUser,
-    // getUserId,
+    getUserId,
 };

@@ -20,10 +20,13 @@ router.get('/', authenticateMiddleware, async (req, res) => {
     res.status(200).json(user);
 });
 
-// router.get('/:id', validateEmail, validateName, validatePassword, async (req, res) => { 
-//     const { id } = req.params;
-//     const userId = await servicesUser.getUserId(id, req.body);
-//     res.status(201).json(userId);
-// });
+router.get('/:id', authenticateMiddleware, async (req, res) => { 
+    const { id } = req.params;
+    const userId = await servicesUser.getUserId(id, req.body);
+    if (userId) {
+    res.status(200).json(userId);
+    }
+    res.status(404).json({ message: 'User does not exist' });
+});
 
 module.exports = router;
