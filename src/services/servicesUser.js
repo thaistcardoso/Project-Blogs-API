@@ -2,9 +2,9 @@ const { User } = require('../database/models');
 const { generateJWToken } = require('../utils/jwt');
 // const { generateJWToken } = require('../utils/jwt');
 
-const createUser = async ({ id, displayName, email, password, image }) => {
+const createUser = async ({ displayName, email, password, image }) => {
     const user = await User.findOne({
-        attributes: ['id', 'displayName', 'email', 'password', 'image'],
+        attributes: ['displayName', 'email', 'password', 'image'],
         where: { email },
     });
 
@@ -13,7 +13,7 @@ const createUser = async ({ id, displayName, email, password, image }) => {
         error.status = 409;
         throw error;
     }
-    const newUser = await User.create({ id, displayName, email, password, image });
+    const newUser = await User.create({ displayName, email, password, image });
     const token = generateJWToken(newUser.dataValues);
 
     return { token };

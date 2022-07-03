@@ -6,7 +6,8 @@ const validateName = (req, _res, next) => {
         error.status = 400;
         throw error;
     }
-   next();
+ 
+    next();
 };
 
 module.exports = { validateName };
