@@ -9,6 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       title: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       content: {
@@ -22,17 +23,17 @@ module.exports = {
       },
       updated: {
         type: Sequelize.DATE
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('now()')
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('now()')
       }
+      // createdAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE,
+      //   defaultValue: Sequelize.literal('now()')
+      // },
+      // updatedAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE,
+      //   defaultValue: Sequelize.literal('now()')
+      // }
     });
   },
   down: async (queryInterface, Sequelize) => {

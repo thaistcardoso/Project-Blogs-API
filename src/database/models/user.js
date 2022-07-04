@@ -9,7 +9,7 @@ const UsersSchema = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.INTEGER,
     image: DataTypes.STRING
-  }, { timestamps: false });
+  }, { timestamps: false, tableName: 'Users' });
 
   UserTable.associate = models => {
     UserTable.hasMany(models.BlogPost, {

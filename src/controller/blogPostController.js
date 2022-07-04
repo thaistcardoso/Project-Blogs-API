@@ -6,8 +6,9 @@ const servicesBlogPost = require('../services/blogPostService');
 
 const { authenticateMiddleware } = require('../middlewares/auth');
 
-router.get('/', authenticateMiddleware, async (req, res) => { 
+router.get('/', authenticateMiddleware, async (_req, res) => { 
     const getPost = await servicesBlogPost.getAllPost();
+    console.log('getpost', getPost);
     res.status(200).json(getPost);
 });
 

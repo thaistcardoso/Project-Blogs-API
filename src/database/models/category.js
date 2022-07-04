@@ -6,11 +6,11 @@ const CategorySchema = (sequelize, DataTypes) => {
       autoIncrement:true,
     },
     name: DataTypes.STRING
-  }, { timestamps: false });
+  }, { timestamps: false, tableName: 'Categories' });
   
-     CategoryTable.associate = models => {
-      // define association here
-    }
+    //  CategoryTable.associate = models => {
+    //   // define association here
+    // }
 
   return CategoryTable;
 };
